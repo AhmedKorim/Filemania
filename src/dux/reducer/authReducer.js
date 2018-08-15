@@ -1,23 +1,21 @@
 import {LOGIN, SIGNOUT, SIGNUP} from "../actions/actions";
 
 const intiaState = {
-    auth: false,
     userData: {
-        name: '',
-        email: '',
-        password: '',
-        gender: '',
+        name: null,
+        email: null,
+        password: null,
+        gender: null,
+        token: null,
+        _id: null
     }
 }
-const authReducer = (state = intiaState, action) => {
-    console.log(action);
+export default (state = intiaState, action) => {
     switch (action.type) {
         case LOGIN:
-            const {name, email, password, gender} = action.payload;
             return {
-                auth: true,
                 userData: {
-                    name, email, password, gender
+                    ...action.payload
                 }
             };
 
@@ -30,8 +28,7 @@ const authReducer = (state = intiaState, action) => {
             return {
                 ...intiaState
             }
-
+        default: return state;
     }
 }
-export default authReducer;
 

@@ -3,12 +3,12 @@ import React from "react";
 import Button from "@material-ui/core/Button/Button";
 
 const SignUp = props => {
-    const {name, email, password, rePassowrd, gender, handleChange, handelSiginup} = props;
-    return <form onSubmit={handelSiginup}>
+    const {name, email, password, rePassowrd, gender, handleChange, handelSignup} = props;
+   return <form onSubmit={handelSignup}>
         <TextField
-            required
-            id="name"
-            label="Name"
+                required
+                id="name"
+                label="Name"
             value={name}
             onChange={handleChange('name')}
             margin="normal"
@@ -36,9 +36,10 @@ const SignUp = props => {
             type="password"
             value={rePassowrd}
             label="Reenter password"
-            onChange={handleChange('re-password')}
+            onChange={handleChange('rePassowrd')}
             margin="normal"
-        /> <TextField
+        /> 
+        <TextField
         id="select-currency-native"
         select
         label="Native select"

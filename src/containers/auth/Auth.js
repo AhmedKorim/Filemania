@@ -7,7 +7,7 @@ import Tabs from "@material-ui/core/Tabs/Tabs";
 import Tab from "@material-ui/core/Tab/Tab";
 import {withStyles} from "@material-ui/core";
 import {connect} from "react-redux";
-import {LOGIN, SIGNUP} from "../../dux/actions/actions";
+import {login, signup} from "../../dux/actions/actions";
 
 const styles = theme => ({
     root: {
@@ -45,7 +45,6 @@ class Auth extends React.Component {
     // handling login event raised from login component
     handelLogin = (event) => {
         event.preventDefault();
-        console.log(event);
         // TODO : login validation
         const {email, password} = this.state;
         this.props.login({email, password})
@@ -54,10 +53,9 @@ class Auth extends React.Component {
 
     handelSignup = (event) => {
         event.preventDefault();
-        console.log(event);
         // TODO : signin validation
-        const {name, email, password, gender} = this.state;
-        this.props.signUp({name, email, gender, password})
+        const {name, email, password, gender, rePassowrd} = this.state;
+        this.props.signUp({name, email, gender, password, re_password: rePassowrd})
     };
 
 
@@ -96,7 +94,7 @@ class Auth extends React.Component {
                         rePassowrd={rePassowrd}
                         gender={gender}
                         handleChange={handleChange}
-                        handelSigup={handelSignup}
+                        handelSignup={handelSignup}
                     />
                 </SwipeableViews>
             </div>
@@ -112,8 +110,8 @@ class Auth extends React.Component {
 // }
 const mapdispatchToPorps = dispatch => {
     return {
-        login: (payload) => {dispatch({type: LOGIN, payload: payload})},
-        signUp: (payload) => {dispatch({type: SIGNUP, payload: payload})},
+        login: (payload) => dispatch(login(payload)),
+        signUp: (payload) => dispatch(signup(payload))
     }
 }
 
