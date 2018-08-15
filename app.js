@@ -2,7 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const config = require('./server/assets/config');
+const cors = require("cors");
 const app = express();
+
 
 
 /*connect to DB*/
@@ -12,6 +14,7 @@ require("./server/models/user.model");
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(cors());
 
 /* main router */
 app.get("*", (_, res) => {

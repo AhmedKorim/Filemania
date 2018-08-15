@@ -50,17 +50,16 @@ router.post("/register", (req, res) => {
                 gender
             })
                 .save()
-                .then(user => {
-                    console.log(user);
+                .then(_ => {
                     return res.json({
                         success: true,
-                        msgs: ["Successfully register"],
-                        user: {
+                        msgs: ["Successfully register"]
+                        /* user: {
                             name: user.name,
                             email: user.email,
                             _id: user._id,
                             gender: user.gender
-                        }
+                        } */
                     });
                 })
                 .catch(_ => {
@@ -121,5 +120,15 @@ router.post("/login", (req, res) => {
     });
 });
 
+router.get("/refreshToken", (_, res) => {
+    const token = jwt.sign({id: user._id}, config.secret, {
+        expiresIn: 7200
+    });
+    return res.json({
+        success: true,
+        msgs: [],
+        token
+    })
+});
 
 module.exports = router;
