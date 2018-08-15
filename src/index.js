@@ -9,8 +9,10 @@ import {createStore, combineReducers, applyMiddleware, compose} from "redux";
 import authReducer from "./dux/reducer/authReducer";
 import {Provider} from "react-redux";
 import thunk from 'redux-thunk';
+import {BrowserRouter} from 'react-router-dom';
 /* development */
 import axios from 'axios';
+
 axios.defaults.baseURL = "http://localhost:4000";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -18,7 +20,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // editing  material ui theme
 const theme = createMuiTheme({
     palette: {
-        type: 'dark'
+        type: 'light'
     }
 })
 
@@ -32,7 +34,9 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
         <MuiThemeProvider theme={theme}>
-            <App/>
+            <BrowserRouter>
+                <App/>
+            </BrowserRouter>
         </MuiThemeProvider>
     </Provider>
     , document.getElementById('root'));
