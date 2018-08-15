@@ -7,10 +7,10 @@ const intiaState = {
         email: '',
         password: '',
         gender: '',
-
     }
 }
 const authReducer = (state = intiaState, action) => {
+    console.log(action);
     switch (action.type) {
         case LOGIN:
             const {name, email, password, gender} = action.payload;

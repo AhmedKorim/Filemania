@@ -3,8 +3,8 @@ import React from "react";
 import Button from "@material-ui/core/Button/Button";
 
 const SignUp = props => {
-    const {name, email, password, rePassowrd, gender, handleChange ,handelSignup} = props;
-    return <form onSubmit={handelSignup}>
+    const {name, email, password, rePassowrd, gender, handleChange, handelSiginup} = props;
+    return <form onSubmit={handelSiginup}>
         <TextField
             required
             id="name"
@@ -54,7 +54,9 @@ const SignUp = props => {
             female
         </option>
     </TextField>
-        <Button variant="contained">
+        <Button
+            type="submit"
+            variant="contained">
             Login
         </Button>
     </form>;

@@ -23,7 +23,9 @@ const LoginForm = props => {
                 onChange={handleChange('password')}
                 margin="normal"
             />
-            <Button variant="contained" >
+            <Button
+            type="submit"
+                variant="contained" >
                 Login
             </Button>
         </form>
