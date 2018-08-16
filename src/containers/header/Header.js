@@ -1,21 +1,29 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import Drawer from "@material-ui/core/Drawer/Drawer";
 import List from "@material-ui/core/List/List";
 import ListItem from "@material-ui/core/ListItem/ListItem";
 import AppBar from "@material-ui/core/AppBar/AppBar";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import './Header.scss';
+// icons
 import Menu from '@material-ui/icons/Menu';
 import Dashbord from '@material-ui/icons/Dashboard';
 import CloudUpload from '@material-ui/icons/CloudUpload';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Notifications from '@material-ui/icons/Notifications';
-import {Link} from "react-router-dom";
+import Home from '@material-ui/icons/Home';
+import Group from '@material-ui/icons/Group';
+
+// icons
+
 import Grid from "@material-ui/core/Grid/Grid";
 import Avatar from "@material-ui/core/Avatar/Avatar";
 import DropDown from "../../components/dropDown/DropDown";
 import {createStyles} from "@material-ui/core";
 import {withStyles} from "@material-ui/core/styles";
+import SideListItem from "../../components/navigation/sideNavListItems/SideListItem";
+import {connect} from "react-redux";
+import {SIDE_OPEN} from "../../dux/actions/actions";
 
 
 const styles = theme => console.log(theme) || createStyles({
@@ -25,18 +33,13 @@ const styles = theme => console.log(theme) || createStyles({
 })
 
 class Header extends React.Component {
-    state = {
-        open: true
-    }
     toggle = () => {
         this.setState(({open}) => ({open: !open}))
     };
 
 
     render() {
-        const {state: {open}, toggle} = this;
-        const link = props => <Link to='/login' {...props} />;
-        const {classes} = this.props;
+        const {open, toggle} = this.props;
         return (
             <div className="header">
                 <header>
@@ -65,7 +68,6 @@ class Header extends React.Component {
                 </header>
                 <Drawer open={open}
                         variant="persistent"
-                        classes={classes.drawer}
                 >
                     <AppBar position="static" color="default">
                         <IconButton aria-label="Delete" color="inherit" onClick={toggle}>
@@ -74,26 +76,26 @@ class Header extends React.Component {
                     </AppBar>
                     <div className='list'>
                         <List>
-                            <ListItem>
-                                <Grid container className="icon">
-                                    <Grid item xs={3}>
-                                        <Avatar>PC</Avatar>
-                                    </Grid>
-                                    <Grid item xs className="description">
-                                        <h3>name</h3>
-                                    </Grid>
-                                </Grid>
-                            </ListItem>
-                            <ListItem button component={link}>
-                                <Grid container className="icon">
-                                    <Grid item xs={3}>
-                                        <Dashbord/>
-                                    </Grid>
-                                    <Grid item xs className="description">
-                                        <h3>name</h3>
-                                    </Grid>
-                                </Grid>
-                            </ListItem>
+                            <SideListItem
+                                name={'Home'}
+                                icon={<Avatar>PC</Avatar>}
+                                to={'profile'}
+                            />
+                            <SideListItem
+                                name={'Home'}
+                                icon={<Home/>}
+                                to={'home'}
+                            />
+                            <SideListItem
+                                name={'Dashboard'}
+                                icon={<Dashbord/>}
+                                to={'dashboard'}
+                            />
+                            <SideListItem
+                                name={'Groups'}
+                                icon={<Group/>}
+                                to={'groups'}
+                            />
                         </List>
                     </div>
                 </Drawer>
@@ -101,5 +103,17 @@ class Header extends React.Component {
         )
     }
 }
+// using redux to change container style based on side nav state
+const mapStateToPorps = state => {
+    return {
+        open: state.side.open
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        toggle: () => dispatch({type: SIDE_OPEN})
+    }
+}
 
-export default withStyles(styles)(Header);
+
+export default connect(mapStateToPorps, mapDispatchToProps)(withStyles(styles)(Header));

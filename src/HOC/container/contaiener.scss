@@ -1,0 +1,32 @@
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-left: auto;
+  transition: all ease-in-out .4s;
+  &.center {
+    margin-right: auto;
+
+  }
+  @media (min-width: 576px) {
+    max-width: calc(100vw - 240px);
+
+  }
+  @media (min-width: 768px) {
+    max-width: calc(100vw - 240px);
+
+  }
+  @media (min-width: 992px) {
+    max-width: calc(100vw - 240px);
+
+  }
+  @media (min-width: 1200px) {
+    max-width: calc(100vw - 240px);
+  }
+  &.center {
+    @media (min-width: 1200px) {
+      max-width: 100vw;
+    }
+  }
+}

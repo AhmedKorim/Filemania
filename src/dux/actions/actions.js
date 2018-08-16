@@ -1,5 +1,6 @@
 import axios from 'axios';
 export const SIGNOUT = 'SIGNOUT';
+export const SIDE_OPEN = 'SIDE_OPEN';
 
 export const LOGIN = 'LOGIN';
 export const login = (payload) => {

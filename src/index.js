@@ -12,6 +12,7 @@ import thunk from 'redux-thunk';
 import {BrowserRouter} from 'react-router-dom';
 /* development */
 import axios from 'axios';
+import sideBarReducer from "./dux/reducer/containerReducer";
 
 axios.defaults.baseURL = "http://localhost:4000";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -27,7 +28,9 @@ const theme = createMuiTheme({
 // create redux store
 const store = createStore(
     combineReducers({
-        auth: authReducer
+        auth: authReducer,
+        side: sideBarReducer
+
     }),
     composeEnhancers(applyMiddleware(thunk))
 );
