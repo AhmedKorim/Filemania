@@ -20,7 +20,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // editing  material ui theme
 const theme = createMuiTheme({
     palette: {
-        type: 'light'
+        type: 'dark'
     }
 })
 
