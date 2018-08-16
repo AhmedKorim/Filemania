@@ -4,7 +4,7 @@ import List from "@material-ui/core/List/List";
 import ListItem from "@material-ui/core/ListItem/ListItem";
 import AppBar from "@material-ui/core/AppBar/AppBar";
 import IconButton from "@material-ui/core/IconButton/IconButton";
-import classes from './Header.scss';
+import  './Header.scss';
 
 class Header extends React.Component {
     state = {
@@ -18,9 +18,9 @@ class Header extends React.Component {
     render() {
         const {state: {open}, toggle} = this;
         return (
-            <Fragment>
+            <div className="header">
                 <header>
-                    <AppBar position="fixed" className={classes.AppBar}>
+                    <AppBar position="fixed" className='appBar'>
                         <IconButton aria-label="Delete" onClick={toggle}>
                             x
                         </IconButton>
@@ -33,7 +33,7 @@ class Header extends React.Component {
                         tabIndex={0}
                         role="button"
                     >
-                        <div className={classes.ListItem}>
+                        <div className='listItem'>
                             <List>
                                 <ListItem button onClick={() => console.log('click')}>
                                     hi
@@ -51,7 +51,7 @@ class Header extends React.Component {
                         </div>
                     </div>
                 </Drawer>
-            </Fragment>
+            </div>
         )
     }
 }

@@ -1,6 +1,8 @@
-.ListItem {
-  width: 240px;
-}
-.AppBar{
-  z-index: 999999;
+.header{
+  .appBar{
+    z-index: 55555;
+  }
+  .listItem{
+    width: 240px;
+  }
 }
