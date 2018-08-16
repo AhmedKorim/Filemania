@@ -6,53 +6,47 @@ import AppBar from "@material-ui/core/AppBar/AppBar";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import classes from './Header.scss';
 
-const styles = {
-    list: {
-        width: 250,
-    },
-    fullList: {
-        width: 'auto',
-    },
-};
-
-
 class Header extends React.Component {
     state = {
         open: true
     }
+    toggle = () => {
+        this.setState(({open}) => ({open: !open}))
+    };
+
 
     render() {
-        const {state: {open}} = this;
+        const {state: {open}, toggle} = this;
         return (
             <Fragment>
                 <header>
-                    <AppBar>
-                        <IconButton aria-label="Delete">
-                            {/*<Menu color="inherit"/>*/}
-                            <i className="material-icons">menu</i>
+                    <AppBar position="fixed" className={classes.AppBar}>
+                        <IconButton aria-label="Delete" onClick={toggle}>
+                            x
                         </IconButton>
                     </AppBar>
                 </header>
-                <Drawer open={open}>
+                <Drawer open={open}
+                        variant="persistent"
+                >
                     <div
                         tabIndex={0}
                         role="button"
                     >
-                        <div>
+                        <div className={classes.ListItem}>
                             <List>
-                                <ListItem button>
+                                <ListItem button onClick={() => console.log('click')}>
                                     hi
-                                </ListItem> 
-                                <ListItem button>
-                                hi
-                            </ListItem> 
-                            <ListItem button>
-                                hi
-                            </ListItem> 
-                            <ListItem button>
-                                hi
-                            </ListItem>
-                            <p className={classes["red"]}>test</p>
+                                </ListItem>
+                                <ListItem button onClick={() => console.log('click')}>
+                                    hi
+                                </ListItem>
+                                <ListItem button onClick={() => console.log('click')}>
+                                    hi
+                                </ListItem>
+                                <ListItem button onClick={() => console.log('click')}>
+                                    hi
+                                </ListItem>
                             </List>
                         </div>
                     </div>
